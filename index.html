@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>吳政霖 | UI/UX & 前端開發作品集</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d5a27;
+            --secondary: #4a90e2; 
+            --dark: #333;
+            --light: #f4f7f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        header {
+            background: white;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .intro h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .intro p { font-size: 1.1rem; color: #666; max-width: 700px; margin: 0 auto; }
+
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: #eee;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover { transform: translateY(-10px); }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: #ddd;
+            cursor: zoom-in;
+            transition: opacity 0.3s;
+        }
+
+        .project-image:hover { opacity: 0.8; }
+
+        .project-info { padding: 20px; }
+        .project-info h3 { margin: 0 0 10px; color: var(--primary); }
+        .project-info p { font-size: 0.9rem; color: #777; margin-bottom: 15px; }
+
+        .tech-icons { color: #aaa; font-size: 1.2rem; }
+
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            animation: zoomIn 0.3s ease;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            background: #222;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="intro">
+        <h1>吳政霖 | Cheng-Lin Wu</h1>
+        <p>雲林科技大學 工業工程管理學系</p>
+        <p>致力於打造美觀、具功能性的前端解決方案。</p>
+        <div class="skills">
+            <span class="skill-tag">HTML / CSS / JS</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">UI/UX Design</span>
+            <span class="skill-tag">工業數據可視化</span>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <h2 class="section-title">精選作品案例</h2>
+
+    <div class="project-grid">
+        <div class="project-card">
+            <div class="project-image" style="background-image: url('animal.jpg');" onclick="openModal('animal.jpg')"></div>
+            <div class="project-info">
+                <h3>敏志畜牧場網頁介面</h3>
+                <p>為在地畜牧業打造形象網站。包含產品介紹、品牌故事與聯絡系統，運用綠色系展現天然、友善放牧的品牌理念。</p>
+                <div class="tech-icons">UI/UX · Responsive Design · Web Development</div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image" style="background-image: url('history.jpg');" onclick="openModal('history.jpg')"></div>
+            <div class="project-info">
+                <h3>工業監控 - 歷史折線圖系統</h3>
+                <p>開發具備多維度選擇（溫度、濕度、CO2）的即時監控數據視覺化介面，協助管理者精準掌握生產線環境參數。</p>
+                <div class="tech-icons">JavaScript · Data Visualization · Industrial UI</div>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="project-image" style="background-image: url('plc.jpg');" onclick="openModal('plc.jpg')"></div>
+            <div class="project-info">
+                <h3>生產線 PLC 控制介面</h3>
+                <p>結合龍門機械臂與輸送機的運作邏輯，設計直觀的操作步驟指引與參數設定面板，提升工廠作業安全性與效率。</p>
+                <div class="tech-icons">Front-end Development · Control Interface</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal" onclick="closeModal()">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="imgFull">
+</div>
+
+<footer>
+    <p>網頁設計與開發 © 2026 吳政霖</p>
+    <p>國立雲林科技大學 工業工程管理學系</p>
+</footer>
+
+<script>
+    function openModal(imgSrc) {
+        document.getElementById("myModal").style.display = "flex";
+        document.getElementById("imgFull").src = imgSrc;
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
